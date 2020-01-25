@@ -3,3 +3,6 @@
 *.vcxproj.user
 pch.h
 pch.cpp
+*.pdb
+Debug/
+.vscode/
