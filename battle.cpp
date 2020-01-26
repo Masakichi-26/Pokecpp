@@ -6,7 +6,7 @@
 #include "selection_manipulation.h"
 #include "create_waza.h"
 #include "text_display.h"
-//#include <memory>
+//#include <memory> needed for visual studio code
 
 void engage_battle_loop(Trainer& tnr, std::shared_ptr<Trainer>& enemy_tnr, const int& battle_type) {
 	bool show_battlers = true;

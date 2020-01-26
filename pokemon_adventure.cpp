@@ -29,7 +29,7 @@ int main(){
 	getline(std::cin, trainer_name);
 	Trainer t1 {trainer_name};
 	std::cout << "‚¨–¼‘O‚Í@€" << t1.get_trainer_name() << "‚Å‚·‚ËB" << std::endl;
-	std::cout << "ƒ|ƒPƒ‚ƒ“‚ğ‚ ‚°‚Ü‚·B‚©‚í‚¢‚ª‚Á‚Ä‚­‚¾‚³‚¢B" << std::endl;
+	std::cout << "ƒ|ƒPƒ‚ƒ“‚ğ‚ ‚°‚Ü‚·B‚©‚í‚¢‚ª‚Á‚Ä‚­‚¾‚³‚¢‚ËB" << std::endl;
 	t1.add_pokemon_to_party({1, 50});
 	t1.add_pokemon_to_party({ 4, 1 });
 	t1.add_pokemon_to_party({ 7, 11 });
