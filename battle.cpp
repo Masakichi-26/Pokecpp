@@ -6,7 +6,7 @@
 #include "selection_manipulation.h"
 #include "create_waza.h"
 #include "text_display.h"
-#include <memory>
+//#include <memory>
 
 void engage_battle_loop(Trainer& tnr, std::shared_ptr<Trainer>& enemy_tnr, const int& battle_type) {
 	bool show_battlers = true;
@@ -41,7 +41,7 @@ void engage_battle_loop(Trainer& tnr, std::shared_ptr<Trainer>& enemy_tnr, const
 		}
 
 		std::cin >> sel;
-		if (sel == "1" || sel == "ï¿½P") {
+		if (sel == "1" || sel == "‚P") {
 			player_waza_index = select_waza_player(tnr.get_current_pokemon(player_active_pok_index));
 			if (player_waza_index == -1) {
 				show_battlers = true;
@@ -53,7 +53,7 @@ void engage_battle_loop(Trainer& tnr, std::shared_ptr<Trainer>& enemy_tnr, const
 				show_battlers = true;
 			}
 		}
-		else if (sel == "3" || sel == "ï¿½R") {
+		else if (sel == "3" || sel == "‚R") {
 			int choice = display_trainer_pokemon(tnr, enemy_tnr, player_active_pok_index);
 			if(choice == -1)
 				show_battlers = true;
@@ -67,7 +67,7 @@ void engage_battle_loop(Trainer& tnr, std::shared_ptr<Trainer>& enemy_tnr, const
 				show_battlers = true;
 			}
 		}
-		else if (sel == "4" || sel == "ï¿½S") {
+		else if (sel == "4" || sel == "‚S") {
 			player_waza_index = -4;
 			nigeru = try_escape(tnr.get_current_pokemon(player_active_pok_index), enemy_tnr->get_current_pokemon(enemy_active_pok_index), nigeru_attempts);
 			if (nigeru) {
@@ -93,18 +93,18 @@ void display_battle_opening(Trainer& tnr, std::shared_ptr<Trainer>& enemy_tnr, c
 		text_enemy_sendout_pokemon(enemy_tnr->get_trainer_name(), enemy_tnr->get_lead_pokemon().get_pokedex_name(), battle_type);
 	}
 
-	std::cout << "ï¿½ä‚¯ï¿½ï¿½ï¿½Iï¿½@" << tnr.get_lead_pokemon().get_nickname() << "ï¿½I" << std::endl;
+	std::cout << "‚ä‚¯‚ÁI@" << tnr.get_lead_pokemon().get_nickname() << "I" << std::endl;
 	_getch();
 }
 
 
 void display_withdraw_pokemon(Pokemon& pok) {
-	std::cout << pok.get_nickname() << "ï¿½Aï¿½ß‚ï¿½I" << std::endl;
+	std::cout << pok.get_nickname() << "A–ß‚êI" << std::endl;
 } 
 
 
 void display_sendout_pokemon(Pokemon& pok, Pokemon& enemy_pok) {
-	std::cout << "ï¿½ï¿½ï¿½ï¿½Î‚ï¿½A" << pok.get_nickname() << "!" << std::endl;
+	std::cout << "‚ª‚ñ‚Î‚êI@€€" << pok.get_nickname() << "!" << std::endl;
 }
 
 
@@ -116,15 +116,15 @@ void display_battlers(Pokemon& pok, Pokemon& enemy_pok) {
 	display_battler_hp(enemy_pok);
 	std::cout << "==============================" << std::endl;
 
-	std::cout << std::setw(22) << std::left << "1ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+	std::cout << std::setw(22) << std::left << "1j‚½‚½‚©‚¤"
 		<< "==============================" << std::endl;
-	std::cout << std::setw(22) << std::left << "2ï¿½jï¿½Ç‚ï¿½ï¿½ï¿½";
+	std::cout << std::setw(22) << std::left << "2j‚Ç‚¤‚®";
 	display_battler_basics(pok);
-	std::cout << std::setw(22) << std::left << "3ï¿½jï¿½|ï¿½Pï¿½ï¿½ï¿½ï¿½";
+	std::cout << std::setw(22) << std::left << "3jƒ|ƒPƒ‚ƒ“";
 	display_battler_hp(pok);
-	std::cout << std::setw(22) << std::left << "4ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" << "==============================" << std::endl;
+	std::cout << std::setw(22) << std::left << "4j“¦‚°‚é" << "==============================" << std::endl;
 	std::cout << std::endl;
-	std::cout << pok.get_nickname() << "ï¿½Í‚Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½H ";
+	std::cout << pok.get_nickname() << "‚Í‚Ç‚¤‚·‚éH ";
 
 }
 
@@ -150,7 +150,7 @@ void display_battler_hp(Pokemon& pok) {
 int select_waza_player(Pokemon& pok) {
 	int i{ 0 };
 	std::string sel{};
-	int waza_size{ pok.get_waza_current_size() + 1 }; // +1 to account for "ï¿½ß‚ï¿½"
+	int waza_size{ pok.get_waza_current_size() + 1 }; // +1 to account for "E½ß‚ï¿½"
 	int el{ -1 };
 	bool loop_sel = true;
 
@@ -158,16 +158,16 @@ int select_waza_player(Pokemon& pok) {
 	for (auto w : pok.get_waza_current()) {
 		//if (w.get_waza_name() != "-----") {
 			i++;
-			std::cout << "ï¿½@" << i << "ï¿½j" << std::setw(20) << std::left << w.get_waza_name()
-				<< "ï¿½@" << std::setw(2) << std::right << w.get_pp_current() << "/"
+			std::cout << "@€" << i << "j" << std::setw(20) << std::left << w.get_waza_name()
+				<< "@" << std::setw(2) << std::right << w.get_pp_current() << "/"
 				<< std::setw(2) << w.get_pp_max() << std::endl;
 		//}
 	}
 
 	std::cout << std::endl;
-	std::cout << "ï¿½@" << i+1 << "ï¿½jï¿½ß‚ï¿½" << std::endl;
+	std::cout << "@€" << i+1 << "–ß‚é" << std::endl;
 	std::cout << std::endl;
-	std::cout << "ï¿½Ç‚Ì‚í‚´ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½H ";
+	std::cout << "‚Ç‚Ì‚í‚´‚ðŽg‚¤H";
 
 	do {
 		std::cin >> sel;
@@ -212,7 +212,7 @@ void do_battle(Pokemon& pok, Pokemon& enemy_pok, const int& p_waza, const int& e
 		}
 		else {
 			std::cout << std::endl;
-			std::cout << enemy_pok.get_nickname() << "ï¿½ï¿½ï¿½|ï¿½ê‚½ï¿½I" << std::endl;
+			std::cout << enemy_pok.get_nickname() << "‚ª“|‚ê‚½I" << std::endl;
 			_getch();
 		}
 	}
@@ -257,7 +257,7 @@ bool determine_player_order(const int& player_priority, const int& enemy_priorit
 
 void use_waza(Pokemon& pok, Pokemon& enemy_pok, const int& p_waza, const int& e_waza) {
 	std::cout << std::endl;
-	std::cout << pok.get_nickname() << "ï¿½Í@" << pok.get_waza_current().at(p_waza).get_waza_name() << "ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½I" << " ï¿½ï¿½";
+	std::cout << pok.get_nickname() << "‚Í@€" << pok.get_waza_current().at(p_waza).get_waza_name() << "‚ðŽg‚Á‚½I";
 	std::cout << std::endl;
 
 	if (pok.get_waza_current().at(p_waza).get_scope() == 0) {
@@ -275,13 +275,13 @@ void use_waza(Pokemon& pok, Pokemon& enemy_pok, const int& p_waza, const int& e_
 			}
 			else if (pok.get_waza_current().at(p_waza).get_characteristic() == 1 || pok.get_waza_current().at(p_waza).get_characteristic() == 2) {
 				damage = calc_damage(pok, enemy_pok, p_waza, e_waza);
-				std::cout << "ï¿½@" << damage << "ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½I" << " ï¿½ï¿½";
+				std::cout << "@" << damage << "@ƒ_ƒ[ƒW‚ð—^‚¦‚½I" << " ¤";
 				enemy_pok.deal_damage(damage);
 				_getch();
 			}
 		}
 		else {
-			std::cout << "ï¿½@" << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ê‚½ï¿½I" << " ï¿½ï¿½";
+			std::cout << "@" << "‚µ‚©‚µUŒ‚‚ªŠO‚ê‚½I" << "â–½";
 			_getch();
 		}
 	}
@@ -364,40 +364,40 @@ int display_trainer_pokemon(Trainer& tnr, std::shared_ptr<Trainer>& enemy_tnr, i
 	do {
 		if (show_menu) {
 			std::cout << std::endl;
-			std::cout << " " << tnr.get_trainer_name() << "ï¿½Ìƒ|ï¿½Pï¿½ï¿½ï¿½ï¿½" << std::endl;
+			std::cout << " " << tnr.get_trainer_name() << "‚Ìƒ|ƒPƒ‚ƒ“" << std::endl;
 			tnr.display_party_current();
 			std::cout << std::endl;
 			std::cout << std::endl;
-			std::cout << " " << enemy_tnr->get_trainer_name() << "ï¿½Ìƒ|ï¿½Pï¿½ï¿½ï¿½ï¿½" << std::endl;
+			std::cout << " " << enemy_tnr->get_trainer_name() << "‚Ìƒ|ƒPƒ‚ƒ“" << std::endl;
 			enemy_tnr->display_party_current(7);
 			std::cout << std::endl;
 			if (party_size > 1) {
 				show_irekaeru = true;
-				std::cout << " Iï¿½jï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½ï¿½" << std::endl;
+				std::cout << "Ij“ü‚ê‘Ö‚¦‚é" << std::endl;
 			}
-			std::cout << " Bï¿½jï¿½Æ‚ï¿½ï¿½ï¿½" << std::endl;
+			std::cout << "Bj‚Æ‚¶‚é" << std::endl;
 			std::cout << std::endl;
 			show_menu = false;
 		}
 
 		std::cin >> sel;
 		std::transform(sel.begin(), sel.end(), sel.begin(), ::toupper);
-		if (sel == "ï¿½ï¿½" || sel == "B") {
+		if (sel == "‚‚" || sel == "B") {
 			tojiru = true;
 		}
 		else if ((sel == "i" || sel == "I") && show_irekaeru) {
 			std::string first{};
-			std::cout << "ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½ï¿½|ï¿½Pï¿½ï¿½ï¿½ï¿½ï¿½Ì”Ôï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" << "ï¿½i1ï¿½`" << party_size << "ï¿½j" << std::endl;
-			std::cout << "ï¿½@ï¿½í“¬ï¿½Éoï¿½ï¿½ï¿½|ï¿½Pï¿½ï¿½ï¿½ï¿½ï¿½Ì”Ôï¿½ï¿½F";
+			std::cout << "“ü‚ê‘Ö‚¦‚éƒ|ƒPƒ‚ƒ“‚Ì”Ô†‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << "i1`" << party_size << "j" << std::endl;
+			std::cout << "í“¬‚Éo‚·ƒ|ƒPƒ‚ƒ“‚Ì”Ô†F";
 			std::cin >> first;
 			int first_el = selection_to_element(first, party_size);
 
 			if (first_el == -1) {
-				std::cout << "ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½B" << std::endl;
+				std::cout << "“ü‚ê‘Ö‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B" << std::endl;
 				show_menu = true;
 			}
 			else if (first_el == index) {
-				std::cout << "ï¿½ï¿½ï¿½Ìƒ|ï¿½Pï¿½ï¿½ï¿½ï¿½ï¿½ÍŠï¿½ï¿½Éí“¬ï¿½Éoï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½B" << std::endl;
+				std::cout << "‚»‚Ìƒ|ƒPƒ‚ƒ“‚Í‚·‚Å‚Éí“¬‚Éo‚Ä‚¢‚Ü‚·B" << std::endl;
 				show_menu = true;
 			}
 			else {
@@ -406,29 +406,29 @@ int display_trainer_pokemon(Trainer& tnr, std::shared_ptr<Trainer>& enemy_tnr, i
 		}
 		else {
 			int element = -1;
-			if (sel == "ï¿½P" || sel == "1")
+			if (sel == "‚P" || sel == "1")
 				element = 0;
-			else if (sel == "ï¿½Q" || sel == "2")
+			else if (sel == "‚Q" || sel == "2")
 				element = 1;
-			else if (sel == "ï¿½R" || sel == "3")
+			else if (sel == "‚R" || sel == "3")
 				element = 2;
-			else if (sel == "ï¿½S" || sel == "4")
+			else if (sel == "‚S" || sel == "4")
 				element = 3;
-			else if (sel == "ï¿½T" || sel == "5")
+			else if (sel == "‚T" || sel == "5")
 				element = 4;
-			else if (sel == "ï¿½U" || sel == "6")
+			else if (sel == "‚U" || sel == "6")
 				element = 5;
-			else if (sel == "ï¿½V" || sel == "7")
+			else if (sel == "‚V" || sel == "7")
 				element = 6;
-			else if (sel == "ï¿½W" || sel == "8")
+			else if (sel == "‚W" || sel == "8")
 				element = 7;
-			else if (sel == "ï¿½X" || sel == "9")
+			else if (sel == "‚X" || sel == "9")
 				element = 8;
-			else if (sel == "ï¿½Pï¿½O" || sel == "10")
+			else if (sel == "‚P‚O" || sel == "10")
 				element = 9;
-			else if (sel == "ï¿½Pï¿½P" || sel == "11")
+			else if (sel == "‚P‚P" || sel == "11")
 				element = 10;
-			else if (sel == "ï¿½Pï¿½Q" || sel == "12")
+			else if (sel == "‚P‚Q" || sel == "12")
 				element = 11;
 
 			

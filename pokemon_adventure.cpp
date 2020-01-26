@@ -24,12 +24,12 @@ int main(){
 	srand(time(nullptr));
 	Pokemon p1 {1, 6};
 	
-	std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Í‰ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½H" << std::endl;
+	std::cout << "‚¨–¼‘O‚Í‰½‚Å‚·‚©H" << std::endl;
 	std::string trainer_name{};
 	getline(std::cin, trainer_name);
 	Trainer t1 {trainer_name};
-	std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Í@" << t1.get_trainer_name() << "ï¿½Å‚ï¿½ï¿½ËB" << std::endl;
-	std::cout << "ï¿½qï¿½gï¿½Jï¿½Qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½Bï¿½ï¿½ï¿½í‚¢ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B" << std::endl;
+	std::cout << "‚¨–¼‘O‚Í@€" << t1.get_trainer_name() << "‚Å‚·‚ËB" << std::endl;
+	std::cout << "ƒ|ƒPƒ‚ƒ“‚ð‚ ‚°‚Ü‚·B‚©‚í‚¢‚ª‚Á‚Ä‚­‚¾‚³‚¢B" << std::endl;
 	t1.add_pokemon_to_party({1, 50});
 	t1.add_pokemon_to_party({ 4, 1 });
 	t1.add_pokemon_to_party({ 7, 11 });
@@ -43,7 +43,7 @@ int main(){
 	int i = 0;
 	for (auto o : t1.get_location_info().get_options_info()) {
 		i++;
-		std::cout << i << " ï¿½j" << o << std::endl;
+		std::cout << i << "j" << o << std::endl;
 	}
 
 
@@ -92,8 +92,8 @@ int main(){
 	std::cout << std::endl;
 	for(int i = 0; i < p1.get_waza_current_size(); i++){
 		std::cout << std::setw(20) << std::left << p1.get_waza_current().at(i).get_waza_name() 
-		<< "ï¿½Ð—ÍF" << std::setw(3) << std::right << p1.get_waza_current().at(i).get_waza_power() 
-		<< "ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½F" << std::setw(3) << p1.get_waza_current().at(i).get_waza_accuracy() << std::endl;
+		<< "ˆÐ—ÍF" << std::setw(3) << std::right << p1.get_waza_current().at(i).get_waza_power() 
+		<< "–½’†—¦F" << std::setw(3) << p1.get_waza_current().at(i).get_waza_accuracy() << std::endl;
 	}
 	
 	/*
@@ -110,10 +110,10 @@ int main(){
 	
 	/*
 	std::cout << std::endl;
-	Waza w1 {"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"};
-	std::cout << "ï¿½í‚´ï¿½ï¿½: " << w1.get_waza_name() << std::endl;
-	std::cout << "ï¿½Ð—Í@: " << w1.get_waza_power() << std::endl;
-	std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " << w1.get_waza_accuracy() << std::endl;
+	Waza w1 {"E½E½E½E½E½E½E½E½E½E½"};
+	std::cout << "E½úž´E½E½: " << w1.get_waza_name() << std::endl;
+	std::cout << "E½Ð—Í@: " << w1.get_waza_power() << std::endl;
+	std::cout << "E½E½E½E½E½E½: " << w1.get_waza_accuracy() << std::endl;
 	*/
 	
 //	Waza w1 = p1.get_waza_current().at(0);
@@ -122,8 +122,8 @@ int main(){
 	std::cout << std::endl;
 	for(int i = 0; i < p1.get_waza_current_size(); i++){
 		std::cout << std::setw(20) << std::left << p1.get_waza_current().at(i).get_waza_name() 
-		<< "ï¿½Ð—ÍF" << std::setw(3) << std::right << p1.get_waza_current().at(i).get_waza_power() 
-		<< "ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½F" << std::setw(3) << p1.get_waza_current().at(i).get_waza_accuracy() << std::endl;
+		<< "ˆÐ—ÍF" << std::setw(3) << std::right << p1.get_waza_current().at(i).get_waza_power() 
+		<< "–½’†—¦F" << std::setw(3) << p1.get_waza_current().at(i).get_waza_accuracy() << std::endl;
 	}
 	
 	move_location_on_world_map(t1);
