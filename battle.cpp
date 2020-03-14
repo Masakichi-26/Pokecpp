@@ -104,7 +104,7 @@ void display_withdraw_pokemon(Pokemon& pok) {
 
 
 void display_sendout_pokemon(Pokemon& pok, Pokemon& enemy_pok) {
-	std::cout << "‚ª‚ñ‚Î‚êI@€€" << pok.get_nickname() << "!" << std::endl;
+	std::cout << "‚ª‚ñ‚Î‚êI@" << pok.get_nickname() << "!" << std::endl;
 }
 
 
@@ -158,14 +158,14 @@ int select_waza_player(Pokemon& pok) {
 	for (auto w : pok.get_waza_current()) {
 		//if (w.get_waza_name() != "-----") {
 			i++;
-			std::cout << "@€" << i << "j" << std::setw(20) << std::left << w.get_waza_name()
+			std::cout << "@" << i << "j" << std::setw(20) << std::left << w.get_waza_name()
 				<< "@" << std::setw(2) << std::right << w.get_pp_current() << "/"
 				<< std::setw(2) << w.get_pp_max() << std::endl;
 		//}
 	}
 
 	std::cout << std::endl;
-	std::cout << "@€" << i+1 << "–ß‚é" << std::endl;
+	std::cout << "@" << i+1 << "–ß‚é" << std::endl;
 	std::cout << std::endl;
 	std::cout << "‚Ç‚Ì‚í‚´‚ðŽg‚¤H";
 
@@ -257,7 +257,7 @@ bool determine_player_order(const int& player_priority, const int& enemy_priorit
 
 void use_waza(Pokemon& pok, Pokemon& enemy_pok, const int& p_waza, const int& e_waza) {
 	std::cout << std::endl;
-	std::cout << pok.get_nickname() << "‚Í@€" << pok.get_waza_current().at(p_waza).get_waza_name() << "‚ðŽg‚Á‚½I";
+	std::cout << pok.get_nickname() << "‚Í@" << pok.get_waza_current().at(p_waza).get_waza_name() << "‚ðŽg‚Á‚½I";
 	std::cout << std::endl;
 
 	if (pok.get_waza_current().at(p_waza).get_scope() == 0) {
@@ -275,13 +275,13 @@ void use_waza(Pokemon& pok, Pokemon& enemy_pok, const int& p_waza, const int& e_
 			}
 			else if (pok.get_waza_current().at(p_waza).get_characteristic() == 1 || pok.get_waza_current().at(p_waza).get_characteristic() == 2) {
 				damage = calc_damage(pok, enemy_pok, p_waza, e_waza);
-				std::cout << "@" << damage << "@ƒ_ƒ[ƒW‚ð—^‚¦‚½I" << " ¤";
+				std::cout << "@" << damage << "@ƒ_ƒ[ƒW‚ð—^‚¦‚½I" << text_press_any_button();
 				enemy_pok.deal_damage(damage);
 				_getch();
 			}
 		}
 		else {
-			std::cout << "@" << "‚µ‚©‚µUŒ‚‚ªŠO‚ê‚½I" << "â–½";
+			std::cout << "@" << "‚µ‚©‚µUŒ‚‚ªŠO‚ê‚½I" << text_press_any_button();
 			_getch();
 		}
 	}

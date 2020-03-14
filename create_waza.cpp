@@ -37,6 +37,8 @@ bool check_if_waza_is_stat_changing(Waza &waza) {
 
 	if (n == "‚È‚«‚²‚¦")
 		return true;
+	if (n == "‚±‚í‚¢‚©‚¨")
+		return true;
 
 
 	return false;

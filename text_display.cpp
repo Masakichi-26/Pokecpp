@@ -48,13 +48,13 @@ std::string text_get_stat_name(int &index) {
 
 
 void text_stat_at_max(std::string &name, int &stat) {
-	std::cout << name << "の" << text_get_stat_name(stat) << "は　これ以上　あがらない！" << "　▽" << std::endl;
+	std::cout << name << "の" << text_get_stat_name(stat) << "は　これ以上　あがらない！" << text_press_any_button() << std::endl;
 	_getch();
 }
 
 
 void text_stat_at_min(std::string &name, int &stat) {
-	std::cout << name << "の" << text_get_stat_name(stat) << "は　これ以上　さがらない！" << "　▽" << std::endl;
+	std::cout << name << "の" << text_get_stat_name(stat) << "は　これ以上　さがらない！" << text_press_any_button() << std::endl;
 	_getch();
 }
 
@@ -72,6 +72,11 @@ void text_stat_change(std::string &name, int &stat, int &stage) {
 		potency = "がくっと";
 
 
-	std::cout << name << "の" << text_get_stat_name(stat) << "が　" << potency << change << "　▽" << std::endl;
+	std::cout << name << "の" << text_get_stat_name(stat) << "が　" << potency << change << text_press_any_button() << std::endl;
 	_getch();
+}
+
+
+std::string text_press_any_button() {
+	return " ▽";
 }
