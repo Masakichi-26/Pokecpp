@@ -55,6 +55,7 @@ public:
 	void reset_stats_battle();
 	void reset_stats_battle_stages();
 	void change_stats_battle_stages(std::array<int, 2> &index_change);
+	void update_battle_stats();
 	void set_name();
 	void set_baseStats_infoConstants();
 	std::string display_gender(); // displays gender as a string instead of number

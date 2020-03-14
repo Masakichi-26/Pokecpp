@@ -240,6 +240,35 @@ void Pokemon::change_stats_battle_stages(std::array<int, 2> &index_change) {
 		stats_battle_stages.at(index_change.at(0)) += index_change.at(1);
 		text_stat_change(nickname, index_change.at(0), index_change.at(1));
 	}
+
+	update_battle_stats();
+}
+
+
+void Pokemon::update_battle_stats() {
+	// skip HP and start at ATTACK
+	for (size_t i{ 1 }; i < stats_battle.size(); i++) {
+		int stage = stats_battle_stages.at(i);
+		double stat = stats_battle.at(i);
+		std::cout << stat << std::endl;
+		switch (stage) {
+			case 6: stat *= 4.0; break;
+			case 5: stat *= 3.5; break;
+			case 4: stat *= 3.0; break;
+			case 3: stat *= 2.5; break;
+			case 2: stat *= 2.0; break;
+			case 1: stat *= 1.5; break;
+			case 0: stat *= 1.0; break;
+			case -1: stat *= (2.0 / 3); break;
+			case -2: stat *= (2.0 / 4); break;
+			case -3: stat *= (2.0 / 5); break;
+			case -4: stat *= (2.0 / 6); break;
+			case -5: stat *= (2.0 / 7); break;
+			case -6: stat *= (2.0 / 8); break;
+		}
+		std::cout << stat << std::endl;
+		stats_battle.at(i) = std::floor(stat);
+	}
 }
 
 
