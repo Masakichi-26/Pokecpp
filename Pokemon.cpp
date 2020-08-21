@@ -6,6 +6,7 @@
 #include "create_waza.h"
 #include "waza_list_levelUp.h"
 #include "text_display.h"
+#include "detail_waza.h"
 
 Pokemon::Pokemon(){};
 
@@ -221,6 +222,7 @@ void Pokemon::set_stats_main(){
 void Pokemon::reset_stats_battle() {
 	for (size_t i{ 1 }; i < stats_battle.size(); i++)
 		stats_battle.at(i) = stats_main.at(i);
+	reset_stats_battle_stages();
 }
 
 
@@ -250,7 +252,6 @@ void Pokemon::update_battle_stats() {
 	for (size_t i{ 1 }; i < stats_battle.size(); i++) {
 		int stage = stats_battle_stages.at(i);
 		double stat = stats_battle.at(i);
-		std::cout << stat << std::endl;
 		switch (stage) {
 			case 6: stat *= 4.0; break;
 			case 5: stat *= 3.5; break;
@@ -266,7 +267,6 @@ void Pokemon::update_battle_stats() {
 			case -5: stat *= (2.0 / 7); break;
 			case -6: stat *= (2.0 / 8); break;
 		}
-		std::cout << stat << std::endl;
 		stats_battle.at(i) = std::floor(stat);
 	}
 }

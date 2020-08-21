@@ -8,6 +8,7 @@
 
 class Waza {
 private:
+	int id = -1;
 	std::string name = "";
 	int type = -1; // dark, normal, etc.
 	int power = 0;
@@ -23,6 +24,7 @@ private:
 public:
 	Waza();
 	Waza(std::string name);
+	Waza(int id);
 	std::string get_waza_name();
 	int get_waza_power();
 	int get_waza_accuracy();

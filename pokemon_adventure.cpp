@@ -30,8 +30,8 @@ int main(){
 	Trainer t1 {trainer_name};
 	std::cout << "お名前は　" << t1.get_trainer_name() << "ですね。" << std::endl;
 	std::cout << "ポケモンをあげます。かわいがってくださいね。" << std::endl;
+	t1.add_pokemon_to_party({ 4, 19 }); 
 	t1.add_pokemon_to_party({1, 50});
-	t1.add_pokemon_to_party({ 4, 19 });
 	t1.add_pokemon_to_party({ 7, 11 });
 	t1.display_party_current();
 //	t1.display_trainer_location();

@@ -6,6 +6,8 @@
 #include "Trainer.h"
 
 // constructor
+Trainer::Trainer() {}
+
 Trainer::Trainer(const std::string &name)
 	: trainer_name {name} {
 	set_trainer_id();
@@ -161,6 +163,19 @@ int& Trainer::get_lead_pokemon_index() {
 	}
 }
 
+std::vector<int>& Trainer::get_fightable_pokemon(const size_t pokemon_count) {
+	size_t index{ 0 };
+	for (auto& p : party_current) {
+		int cur_hp = p.get_stats_battle().at(0);
+		if (cur_hp != 0)
+			lead_fightable_pokemon.emplace_back(index);
+		if (lead_fightable_pokemon.size() >= pokemon_count)
+			break;
+		index++;
+	}
+	return lead_fightable_pokemon;
+}
+
 
 Pokemon& Trainer::get_current_pokemon(const int &element) {
 	return party_current.at(element);
@@ -184,4 +199,10 @@ bool Trainer::check_if_party_is_all_defeated() {
 	}
 
 	return defeated_pok == count ? true : false;
+}
+
+void Trainer::reset_party_battle_stats() {
+	for (auto& p : party_current) {
+		p.reset_stats_battle();
+	}
 }

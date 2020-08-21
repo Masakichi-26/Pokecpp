@@ -111,7 +111,9 @@ void determine_new_location(Trainer &tnr, std::string& sel, int &len, bool &loop
 		int tnr_enc = tnr.get_location_info().get_trainer_encounters();
 		std::shared_ptr<Trainer> enemy_tnr = determine_battle_opponent(cur_loc, wild_enc, tnr_enc);
 		if (!enemy_tnr->check_if_party_is_empty()) {
-			engage_battle_loop(tnr, enemy_tnr, 1);
+			// engage_battle_loop(tnr, enemy_tnr, 1);
+			Battle battle(tnr, enemy_tnr);
+			battle.engage_battle_loop();
 		}
 	}
 

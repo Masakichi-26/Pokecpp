@@ -17,11 +17,13 @@ private:
 	int trainer_funds = 0;
 	std::vector<Pokemon> party_current;
 	std::vector<std::vector<Pokemon>> party_in_pc;
+	std::vector<int> lead_fightable_pokemon;
 //	world_locations trainer_location = Masara;
 //	std::string trainer_location = "マサラタウン";
 	Location trainer_location  {"マサラタウン"};
 	Location previous_location{};
 public:
+	Trainer();
 	Trainer(const std::string& name);
 	Trainer(const std::vector<Pokemon> & party);
 	Trainer(const std::string& name, const std::vector<Pokemon> & party);
@@ -33,6 +35,7 @@ public:
 
 	Pokemon& get_lead_pokemon();
 	int& get_lead_pokemon_index();
+	std::vector<int>& get_fightable_pokemon(const size_t pokemon_count);
 	void add_pokemon_to_party(Pokemon&& poke);
 	Pokemon& get_current_pokemon(const int& element);
 	std::shared_ptr<Pokemon> get_current_pokemon_shared_ptr(const int &element);
@@ -45,6 +48,8 @@ public:
 	void switch_pokemon(int &first_el, int &second_el);
 	bool check_if_party_is_empty();
 	bool check_if_party_is_all_defeated();
+
+	void reset_party_battle_stats();
 
 	void set_current_location(std::string& loc);
 	void set_previous_location(std::string& loc);

@@ -25,6 +25,13 @@ Waza::Waza(std::string name)
 	additional_effect_percentage = temp.at(8);
 }
 
+//constructor
+Waza::Waza(int id)
+	: id { id } {
+
+
+}
+
 
 std::string Waza::get_waza_name(){
 	return name;
