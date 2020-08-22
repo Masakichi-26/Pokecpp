@@ -16,3 +16,21 @@ int selection_to_element(std::string &s, int &max) {
 	else
 		return -1;
 }
+
+
+std::string parse_selection(std::string sel) {
+	if (sel == "‚P")
+		return "1";
+	else if (sel == "‚Q")
+		return "2";
+	else if (sel == "‚R")
+		return "3";
+	else if (sel == "‚S")
+		return "4";
+	else if (sel == "‚T")
+		return "5";
+	else if (sel == "‚U")
+		return "6";
+	else
+		return sel;
+}

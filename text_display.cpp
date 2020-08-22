@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <conio.h>
 #include "text_display.h"
 
@@ -7,6 +8,7 @@ void text_player_sendout_pokemon(std::string&& pok_name) {
 	std::cout << "ゆけっ！　" << pok_name << "！" << std::endl;
 	_getch();
 }
+
 
 void text_enemy_sendout_pokemon(std::string &&trainer_name, std::string &&pok_name, const bool &trainer_battle) {
 	std::string battle_type_text{};
@@ -18,9 +20,21 @@ void text_enemy_sendout_pokemon(std::string &&trainer_name, std::string &&pok_na
 	std::cout << trainer_name << "の" << pok_name << battle_type_text << std::endl;
 }
 
+
+void text_action_options() {
+	text_single_empty_line();
+	std::cout << std::setw(22) << std::left << "1）たたかう" << std::endl;
+	std::cout << std::setw(22) << std::left << "2）どうぐ" << std::endl;
+	std::cout << std::setw(22) << std::left << "3）ポケモン" << std::endl;
+	std::cout << std::setw(22) << std::left << "4）逃げる" << std::endl;
+	text_single_empty_line();
+}
+
+
 void text_player_withdraw_pokemon(std::string&& pok_name) {
 	std::cout << pok_name << "、戻れ！" << std::endl;
 }
+
 
 void text_escape_failure() {
 	std::cout << "逃げられなかった！" << " ▽" << std::endl;
@@ -86,4 +100,19 @@ void text_stat_change(std::string &name, int &stat, int &stage) {
 
 std::string text_press_any_button() {
 	return " ▽";
+}
+
+
+std::string text_separator() {
+	return "==============================";
+}
+
+
+std::string text_single_half_space() {
+	return " "; // 半角スペース
+}
+
+
+void text_single_empty_line() {
+	std::cout << std::endl;
 }

@@ -1,5 +1,5 @@
-#ifndef _WAZA_H_
-#define _WAZA_H_
+#ifndef _CONSTANTS_H_
+#define _CONSTANTS_H_
 
 
 namespace DetailWaza {
@@ -12,6 +12,15 @@ namespace DetailWaza {
 		TAIL_WHIP,
 		VINE_WHIP
 
+	};
+}
+
+namespace Action {
+	enum type {
+		SKILL,
+		ITEM,
+		CHANGE,
+		ESCAPE
 	};
 }
 

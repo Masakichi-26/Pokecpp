@@ -29,64 +29,67 @@ void Battle::engage_battle_loop() {
 	bool show_battlers = true;
 	std::string sel{};
 
-	int player_waza_index = -1;
-	int enemy_waza_index = -1;
+	//int player_waza_index = -1;
+	//int enemy_waza_index = -1;
 
 	battle_initialization();
 	// player_active_pokemon->reset_stats_battle();
 	// enemy_active_pokemon->reset_stats_battle();
 	
-//	do {
-//		if (show_battlers) {
-//			display_battlers(tnr.get_current_pokemon(player_active_pok_index), enemy_tnr->get_current_pokemon(enemy_active_pok_index));
-//			show_battlers = false;
-//		}
-//
-//		std::cin >> sel;
-//		if (sel == "1" || sel == "‚P") {
-//			player_waza_index = select_waza_player(tnr.get_current_pokemon(player_active_pok_index));
-//			if (player_waza_index == -1) {
-//				show_battlers = true;
-//			}
-//			else {
-//				enemy_waza_index = select_waza_enemy(enemy_tnr->get_current_pokemon(enemy_active_pok_index));
-////				std::cout << "index: " << enemy_waza_index << std::endl;
-//				do_battle(tnr.get_current_pokemon(player_active_pok_index), enemy_tnr->get_current_pokemon(enemy_active_pok_index), player_waza_index, enemy_waza_index);
-//				show_battlers = true;
-//			}
-//		}
-//		else if (sel == "3" || sel == "‚R") {
-//			int choice = display_trainer_pokemon(tnr, enemy_tnr, player_active_pok_index);
-//			if(choice == -1)
-//				show_battlers = true;
-//			else if (choice >= 0 && choice <= 5) {
-//				display_withdraw_pokemon(tnr.get_current_pokemon(player_active_pok_index));
-//				player_active_pok_index = choice;
-//				display_sendout_pokemon(tnr.get_current_pokemon(player_active_pok_index), enemy_tnr->get_current_pokemon(enemy_active_pok_index));
-//
-//				enemy_waza_index = select_waza_enemy(enemy_tnr->get_current_pokemon(enemy_active_pok_index));
-//				use_waza(enemy_tnr->get_current_pokemon(enemy_active_pok_index), tnr.get_current_pokemon(player_active_pok_index), enemy_waza_index, player_waza_index);
-//				show_battlers = true;
-//			}
-//		}
-//		else if (sel == "4" || sel == "‚S") {
-//			player_waza_index = -4;
-//			escape = try_escape(tnr.get_current_pokemon(player_active_pok_index), enemy_tnr->get_current_pokemon(enemy_active_pok_index), escape_attempts);
-//			if (escape) {
-//				text_escape_success();
-//			}
-//			else {
-//				text_escape_failure();
-//				enemy_waza_index = select_waza_enemy(enemy_tnr->get_current_pokemon(enemy_active_pok_index));
-//				use_waza(enemy_tnr->get_current_pokemon(enemy_active_pok_index), tnr.get_current_pokemon(player_active_pok_index), enemy_waza_index, player_waza_index);
-//				show_battlers = true;
-//			}
-//		}
+	do {
+		if (show_battlers) {
+			display_battlers();
+			show_battlers = false;
+		}
 
-	//	player_all_defeated = player.check_if_party_is_all_defeated();
-	//	enemy_all_defeated = enemy->check_if_party_is_all_defeated(); // needs consideration on how to check
+		std::cin >> sel;
+		sel = parse_selection(sel);
 
-	//} while (!player_all_defeated && !enemy_all_defeated && !escape);
+		if (sel == "1") {
+			player_waza_index = select_waza_player(tnr.get_current_pokemon(player_active_pok_index));
+			if (player_waza_index == -1) {
+				show_battlers = true;
+			}
+			else {
+				enemy_waza_index = select_waza_enemy(enemy_tnr->get_current_pokemon(enemy_active_pok_index));
+				std::cout << "index: " << enemy_waza_index << std::endl;
+				do_battle(tnr.get_current_pokemon(player_active_pok_index), enemy_tnr->get_current_pokemon(enemy_active_pok_index), player_waza_index, enemy_waza_index);
+				show_battlers = true;
+			}
+		}
+		else if (sel == "3" || sel == "‚R") {
+			int choice = display_trainer_pokemon(tnr, enemy_tnr, player_active_pok_index);
+			if(choice == -1)
+				show_battlers = true;
+			else if (choice >= 0 && choice <= 5) {
+				display_withdraw_pokemon(tnr.get_current_pokemon(player_active_pok_index));
+				player_active_pok_index = choice;
+				display_sendout_pokemon(tnr.get_current_pokemon(player_active_pok_index), enemy_tnr->get_current_pokemon(enemy_active_pok_index));
+
+				enemy_waza_index = select_waza_enemy(enemy_tnr->get_current_pokemon(enemy_active_pok_index));
+				use_waza(enemy_tnr->get_current_pokemon(enemy_active_pok_index), tnr.get_current_pokemon(player_active_pok_index), enemy_waza_index, player_waza_index);
+				show_battlers = true;
+			}
+		}
+		else if (sel == "4" || sel == "‚S") {
+			player_waza_index = -4;
+			escape = try_escape(tnr.get_current_pokemon(player_active_pok_index), enemy_tnr->get_current_pokemon(enemy_active_pok_index), escape_attempts);
+			if (escape) {
+				text_escape_success();
+			}
+			else {
+				text_escape_failure();
+				enemy_waza_index = select_waza_enemy(enemy_tnr->get_current_pokemon(enemy_active_pok_index));
+				use_waza(enemy_tnr->get_current_pokemon(enemy_active_pok_index), tnr.get_current_pokemon(player_active_pok_index), enemy_waza_index, player_waza_index);
+				show_battlers = true;
+			}
+		}
+
+		player_all_defeated = player.check_if_party_is_all_defeated();
+		enemy_all_defeated = enemy->check_if_party_is_all_defeated(); // needs consideration on how to check
+		player_all_defeated = true;
+
+	} while (!player_all_defeated && !enemy_all_defeated && !escape);
 }
 
 
@@ -113,24 +116,36 @@ void Battle::display_sendout_pokemon(Pokemon& pok, Pokemon& enemy_pok) {
 }
 
 
-void Battle::display_battlers(Pokemon& pok, Pokemon& enemy_pok) {
-//	std::cout << "123456789012345678901234567890" << std::endl;
-	std::cout << std::endl;
-	std::cout << "==============================" << std::endl;
-	display_battler_basics(enemy_pok);
-	display_battler_hp(enemy_pok);
-	std::cout << "==============================" << std::endl;
+void Battle::display_battlers() {
+	display_team(active_enemy_pokemon_index, enemy->get_current_party());
+	text_action_options();
+	display_team(active_player_pokemon_index, player.get_current_party());
+}
 
-	std::cout << std::setw(22) << std::left << "1j‚½‚½‚©‚¤"
-		<< "==============================" << std::endl;
-	std::cout << std::setw(22) << std::left << "2j‚Ç‚¤‚®";
-	display_battler_basics(pok);
-	std::cout << std::setw(22) << std::left << "3jƒ|ƒPƒ‚ƒ“";
-	display_battler_hp(pok);
-	std::cout << std::setw(22) << std::left << "4j“¦‚°‚é" << "==============================" << std::endl;
-	std::cout << std::endl;
-	std::cout << pok.get_nickname() << "‚Í‚Ç‚¤‚·‚éH ";
 
+void Battle::display_team(std::vector<int>& index, std::vector<Pokemon>&& party) {
+	//	std::cout << "123456789012345678901234567890" << std::endl;
+	for (auto& i : index) {
+		std::cout << text_separator() << text_single_half_space();
+	}
+	text_single_empty_line();
+
+	for (auto& i : index) {
+		display_battler_basics(party.at(i));
+		std::cout << text_single_half_space();
+	}
+	text_single_empty_line();
+
+	for (auto& i : index) {
+		display_battler_hp(party.at(i));
+		std::cout << text_single_half_space();
+	}
+	text_single_empty_line();
+
+	for (auto& i : index) {
+		std::cout << text_separator() << text_single_half_space();
+	}
+	text_single_empty_line();
 }
 
 
@@ -139,7 +154,7 @@ void Battle::display_battler_basics(Pokemon& pok) {
 		<< " " << std::setw(2) << pok.display_gender() << " "
 		<< std::setw(6) << "" << "Lv "
 		<< std::setw(3) << std::right << pok.get_level_exp().at(0)
-		<< " =" << std::endl;
+		<< " =";
 }
 
 
@@ -148,7 +163,7 @@ void Battle::display_battler_hp(Pokemon& pok) {
 		<< std::setw(4) << ""
 		<< std::setw(3) << std::right << pok.get_stats_battle().at(0) << " / "
 		<< std::setw(3) << std::right << pok.get_stats_main().at(0)
-		<< " =" << std::endl;
+		<< " =";
 }
 
 

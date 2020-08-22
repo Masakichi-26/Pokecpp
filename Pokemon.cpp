@@ -6,7 +6,7 @@
 #include "create_waza.h"
 #include "waza_list_levelUp.h"
 #include "text_display.h"
-#include "detail_waza.h"
+#include "constants.h"
 
 Pokemon::Pokemon(){};
 

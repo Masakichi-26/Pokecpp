@@ -3,5 +3,6 @@
 #include <string>
 
 int selection_to_element(std::string &s, int &max);
+std::string parse_selection(std::string sel);
 
 #endif

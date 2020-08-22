@@ -4,6 +4,7 @@
 #include <array>
 #include <string>
 #include "Trainer.h"
+#include "BattleAction.h"
 
 class Battle {
 private:
@@ -12,7 +13,7 @@ private:
 	std::vector<int> active_player_pokemon_index;
 	std::vector<int> active_enemy_pokemon_index;
 
-	int pokemon_count = 1;
+	int pokemon_count = 2;
 	bool trainer_battle = false;
 	bool can_use_items_gain_exp = true;
 
@@ -34,7 +35,8 @@ public:
 	void initialize_stats();
 
 
-	void display_battlers(Pokemon& pok, Pokemon& enemy_pok);
+	void display_battlers();
+	void display_team(std::vector<int>& index, std::vector<Pokemon>&& party);
 	void display_battler_basics(Pokemon& pok);
 	void display_battler_hp(Pokemon& pok);
 	void display_withdraw_pokemon(Pokemon& pok);

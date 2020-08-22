@@ -16,6 +16,7 @@ std::shared_ptr<Trainer> determine_battle_opponent(const std::string& cur_loc, c
 		if (!spawn_list.empty()) {
 //			Pokemon temp_pok{ select_wild_pokemon(spawn_list) };
 			temp_tnr->add_pokemon_to_party(select_wild_pokemon(spawn_list));
+			temp_tnr->add_pokemon_to_party(select_wild_pokemon(spawn_list));
 		}
 		return temp_tnr;
 	}
